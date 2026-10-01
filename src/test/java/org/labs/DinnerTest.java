@@ -52,6 +52,12 @@ class DinnerTest {
     }
 
     @Test
+    void manyProgrammers() throws InterruptedException {
+        DinnerConfig config = DinnerConfig.of(20_000, 4, 40_000);
+        assertCorrect(config, new Dinner(config).run());
+    }
+
+    @Test
     void worksWithThinkAndEatTime() throws InterruptedException {
         DinnerConfig config = new DinnerConfig(5, 2, 200, 1, Duration.ofMillis(1), Duration.ofMillis(1));
         assertCorrect(config, new Dinner(config).run());

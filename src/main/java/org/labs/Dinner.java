@@ -32,8 +32,8 @@ public final class Dinner {
 
         long start = System.nanoTime();
         List<Future<Long>> futures;
-        try (ExecutorService pool = Executors.newFixedThreadPool(n,
-                Thread.ofPlatform().name("programmer-", 0).factory())) {
+        try (ExecutorService pool = Executors.newThreadPerTaskExecutor(
+                Thread.ofVirtual().name("programmer-", 0).factory())) {
             futures = pool.invokeAll(programmers);
         }
         Duration elapsed = Duration.ofNanos(System.nanoTime() - start);
