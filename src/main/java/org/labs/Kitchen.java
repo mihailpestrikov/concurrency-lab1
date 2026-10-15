@@ -10,18 +10,10 @@ final class Kitchen {
     }
 
     boolean takePortion() {
-        while (true) {
-            long left = portionsLeft.get();
-            if (left == 0) {
-                return false;
-            }
-            if (portionsLeft.compareAndSet(left, left - 1)) {
-                return true;
-            }
-        }
+        return portionsLeft.getAndDecrement() > 0;
     }
 
     long portionsLeft() {
-        return portionsLeft.get();
+        return Math.max(0, portionsLeft.get());
     }
 }
